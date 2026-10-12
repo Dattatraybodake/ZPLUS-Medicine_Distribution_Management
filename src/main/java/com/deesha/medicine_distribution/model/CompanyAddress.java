@@ -1,14 +1,15 @@
 package com.deesha.medicine_distribution.model;
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.time.LocalDateTime;
+import lombok.ToString;
 
 @Entity
 @Getter @Setter
-@Table(name = "company_address", uniqueConstraints = @UniqueConstraint(name = "uq_company_address_type", columnNames = {"company_id", "address_type"}))
-public class CompanyAddress extends BaseAuditEntity {
+@Table(name = "company_address", uniqueConstraints = @UniqueConstraint(name = "uk_company_address_type", columnNames = {"company_id", "address_type"}))
+public class CompanyAddress
+{
 
     public enum AddressType { REGISTERED, FACTORY, CORRESPONDENCE }
 
@@ -17,9 +18,10 @@ public class CompanyAddress extends BaseAuditEntity {
     @Column(name = "address_id")
     private Long addressId;
 
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "company_id", nullable = false)
-    private Company company;
+    private Companies company;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "address_type", nullable = false, length = 20)
@@ -34,15 +36,15 @@ public class CompanyAddress extends BaseAuditEntity {
     @Column(name = "city", nullable = false, length = 90)
     private String city;
 
-    @Column(name = "district", nullable = false)
+    @Column(name = "district", nullable = false, length = 90)
     private String district;
 
-    @Column(name = "state", nullable = false)
+    @Column(name = "state", nullable = false, length = 90)
     private String state;
 
-    @Column(name = "country", nullable = false)
+    @Column(name = "country", nullable = false, length = 90)
     private String country;
 
-    @Column(name = "pincode", nullable = false)
-    private int pincode;
+    @Column(name = "pincode", nullable = false, length = 6)
+    private String pincode;
 }

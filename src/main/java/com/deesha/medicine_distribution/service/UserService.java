@@ -10,6 +10,6 @@ public interface UserService {
     boolean saveUsers(UserModel usermodel);
     List<UserModel> viewAllUsers();
     LoginResponse login(LoginRequest loginRequest);
+    Boolean updateUserMaster(UserModel userModel);
     public void deleteUser(int userid);
 }
-

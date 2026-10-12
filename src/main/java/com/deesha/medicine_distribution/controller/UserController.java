@@ -51,7 +51,6 @@ public class UserController {
     @GetMapping("/Viewuser")
     public List<UserModel> getAllUsers() throws Exception
     {
-//        return userService.viewAllUsers();
         List<UserModel> list = userService.viewAllUsers();
         if(list.size()!=0)
         {
@@ -71,5 +70,15 @@ public class UserController {
         return ResponseEntity.ok(loginresponse);
     }
 
-    public
+    // Update user
+    @PutMapping("/update")
+    public ResponseEntity<Boolean> updateUser( @RequestBody UserModel userModel) {
+        Boolean updated = userService.updateUserMaster(userModel);
+        if (Boolean.TRUE.equals(updated)) {
+            return ResponseEntity.ok(true);
+        }
+        return ResponseEntity.badRequest().body(false);
+    }
+
+
 }

@@ -6,17 +6,17 @@ import lombok.Setter;
 
 @Entity
 @Getter @Setter
-@Table(name="enterprice_type")
-public class EnterpriseType extends BaseAuditEntity {
+@Table(name = "enterprice_type")
+public class EnterpriseType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="enterprise_type_id")
+    @Column(name = "enterprise_type_id")
     private Integer enterpriseTypeId;
 
-    @Column(name="enterprice_type")
+    @Column(name = "enterprice_type")
     private String enterpriseType;
 
-    @Column(name="is_active", nullable = false)
-    private boolean isActive=true;
+    @Column(name = "is_active", nullable = false)
+    private Boolean isActive = true;
 }

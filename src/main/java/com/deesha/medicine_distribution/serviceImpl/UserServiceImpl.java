@@ -5,6 +5,7 @@ import com.deesha.medicine_distribution.dto.LoginResponse;
 import com.deesha.medicine_distribution.model.UserModel;
 import com.deesha.medicine_distribution.repository.UserRepository;
 import com.deesha.medicine_distribution.service.UserService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,9 +38,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public LoginResponse login(LoginRequest loginRequest) {
-
         LoginResponse loginResponse = new LoginResponse();
-
         UserModel usermodel = userRepository.findByEmail(loginRequest.getEmail());
 
         if (usermodel == null) {
@@ -68,32 +67,32 @@ public class UserServiceImpl implements UserService {
         return loginResponse;
     }
 
-//    @Override
-//    public LoginResponse login(LoginRequest loginRequest) {
-//
-//        LoginResponse loginResponse = new LoginResponse();
-//
-//        try {
-//            UserModel usermodel = userRepository.findByEmail(loginRequest.getEmail());
-//
-//            if (usermodel == null) {
-//                loginResponse.setFlag(false);
-//                loginResponse.setMessage("User Model Not Found");
-//                return loginResponse;
-//            }
-//
-//            if (usermodel.getEmail().equalsIgnoreCase(loginRequest.getEmail())) {
-//                loginResponse.setFlag(true);
-//                loginResponse.setMessage("Login SuccessFull");
-//            } else {
-//
-//                loginResponse.setFlag(false);
-//                loginResponse.setMessage("Password is not correct");
-//            }
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
-//
-//        return loginresponse;
-//    }
+    @Override
+    public Boolean updateUserMaster(UserModel userModel) {
+        try {
+            if (userModel == null || userModel.getUserId() == null) {
+                return false;
+            }
+
+            UserModel existingUser = userRepository
+                    .findById(userModel.getUserId())
+                    .orElse(null);
+
+            if (existingUser == null) {
+                return false;
+            }
+
+            BeanUtils.copyProperties(
+                    userModel,
+                    existingUser,
+                    "userId"
+            );
+            userRepository.save(existingUser);
+            return true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
