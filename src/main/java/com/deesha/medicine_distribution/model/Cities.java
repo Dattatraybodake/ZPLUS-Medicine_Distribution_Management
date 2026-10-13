@@ -4,8 +4,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-// Cities.java
-@Entity @Getter @Setter
+
+
+@Entity
+@Getter
+@Setter
 @Table(name = "cities")
 public class Cities {
     @Id

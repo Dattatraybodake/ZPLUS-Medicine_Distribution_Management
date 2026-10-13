@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-// Districts.java
 @Entity @Getter @Setter
 @Table(name = "districts")
 public class Districts {

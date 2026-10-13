@@ -100,7 +100,6 @@ public class UserServiceImpl implements UserService {
         if (userModel.getFullName() != null)      existing.setFullName(userModel.getFullName());
         if (userModel.getEmail() != null)         existing.setEmail(userModel.getEmail());
         if (userModel.getContactNumber() != null) existing.setContactNumber(userModel.getContactNumber());
-        if (userModel.getRoleId() != null)        existing.setRoleId(userModel.getRoleId());
         if (userModel.getIsActive() != null)      existing.setIsActive(userModel.getIsActive());
         if (userModel.getUserName() != null)      existing.setUserName(userModel.getUserName());
 

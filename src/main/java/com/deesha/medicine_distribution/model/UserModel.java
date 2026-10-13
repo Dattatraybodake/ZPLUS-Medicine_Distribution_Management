@@ -5,13 +5,14 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
+@ToString(exclude = "role")
 public class UserModel {
 
     @Id
@@ -25,6 +26,9 @@ public class UserModel {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "repeat_password")
+    private String repeatPassword;
+
     @Column(name = "full_name")
     private String fullName;
 
@@ -34,8 +38,9 @@ public class UserModel {
     @Column(name = "contact_number")
     private String contactNumber;
 
-    @Column(name = "role_id")
-    private Integer roleId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_id")
+    private UserRoles role;
 
     @Column(name = "is_active")
     private Boolean isActive = true;
@@ -48,4 +53,9 @@ public class UserModel {
 
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
+
+    @PrePersist
+    public void onCreate() {
+        this.createdAt = LocalDateTime.now();
+    }
 }

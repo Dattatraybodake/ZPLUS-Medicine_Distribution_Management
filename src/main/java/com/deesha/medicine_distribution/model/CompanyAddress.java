@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-// CompanyAddress.java
 @Entity @Getter @Setter
 @Table(name = "company_address",
         uniqueConstraints = @UniqueConstraint(

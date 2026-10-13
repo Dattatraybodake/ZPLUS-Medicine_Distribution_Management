@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Environment.Cache">
+    <option name="cache">
+      <map>
+        <entry key="env" value="[{&quot;datum1&quot;:&quot;Global&quot;,&quot;datum2&quot;:&quot;1790779330062z49t&quot;,&quot;datum0&quot;:true,&quot;datum3&quot;:[{&quot;datum1&quot;:&quot;medical_distributor&quot;,&quot;datum2&quot;:&quot;17907793301152vup&quot;,&quot;datum0&quot;:true,&quot;datum3&quot;:[{&quot;datum1&quot;:&quot;http://localhost&quot;,&quot;datum2&quot;:&quot;8085&quot;,&quot;datum0&quot;:true,&quot;datum3&quot;:&quot;&quot;,&quot;datum4&quot;:&quot;1790779330117kv6q&quot;},{&quot;datum1&quot;:&quot;http://localhost&quot;,&quot;datum2&quot;:&quot;8085&quot;,&quot;datum0&quot;:true,&quot;datum5&quot;:&quot;17907793301152vup&quot;,&quot;datum3&quot;:&quot;&quot;,&quot;datum4&quot;:&quot;1791443063346u3gq&quot;}]},{&quot;datum1&quot;:&quot;medicine_distributor&quot;,&quot;datum2&quot;:&quot;17914434105877xu7&quot;,&quot;datum0&quot;:true,&quot;datum3&quot;:[{&quot;datum1&quot;:&quot;http://localhost&quot;,&quot;datum2&quot;:&quot;8085&quot;,&quot;datum0&quot;:true,&quot;datum3&quot;:&quot;&quot;,&quot;datum4&quot;:&quot;1791443410592np98&quot;}]}]}]" />
+      </map>
+    </option>
+  </component>
+</project>
