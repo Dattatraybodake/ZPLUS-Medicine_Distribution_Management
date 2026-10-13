@@ -19,13 +19,6 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public void deleteUser(int userid) {
-        if (userRepository.existsById(userid)) {
-            userRepository.deleteById(userid);
-        }
-    }
-
-    @Override
     public boolean saveUsers(UserModel usermodel) {
         return userRepository.save(usermodel) != null;
     }
@@ -67,6 +60,7 @@ public class UserServiceImpl implements UserService {
         return loginResponse;
     }
 
+    //Using Put Mapping
     @Override
     public Boolean updateUserMaster(UserModel userModel) {
         try {
@@ -94,5 +88,36 @@ public class UserServiceImpl implements UserService {
             e.printStackTrace();
             return false;
         }
+    }
+
+    // Using Patch mappings
+    @Override
+    public UserModel patchUser(Integer id, UserModel userModel) {
+        UserModel existing = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
+
+        // Update only the fields that were actually sent (non-null)
+        if (userModel.getFullName() != null)      existing.setFullName(userModel.getFullName());
+        if (userModel.getEmail() != null)         existing.setEmail(userModel.getEmail());
+        if (userModel.getContactNumber() != null) existing.setContactNumber(userModel.getContactNumber());
+        if (userModel.getRoleId() != null)        existing.setRoleId(userModel.getRoleId());
+        if (userModel.getIsActive() != null)      existing.setIsActive(userModel.getIsActive());
+        if (userModel.getUserName() != null)      existing.setUserName(userModel.getUserName());
+
+        // Password: encode it if you use an encoder
+//        if (userModel.getPassword() != null && !userModel.getPassword().isBlank()) {
+//            existing.setPassword(passwordEncoder.encode(userModel.getPassword()));
+//            // if you don't use an encoder: existing.setPassword(userModel.getPassword());
+//        }
+
+        return userRepository.save(existing);
+    }
+
+    @Override
+    public void deleteUser(Integer id) {
+        UserModel user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
+        user.setIsActive(false);          // soft delete
+        userRepository.save(user);
     }
 }

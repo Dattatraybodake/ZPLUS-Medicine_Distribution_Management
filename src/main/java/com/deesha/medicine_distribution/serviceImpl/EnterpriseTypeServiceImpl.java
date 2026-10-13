@@ -42,7 +42,9 @@ public class EnterpriseTypeServiceImpl implements EnterpriseTypeService {
     public EnterpriseType update(Integer id, EnterpriseType enterpriseType) {
         EnterpriseType existing = getById(id);
         existing.setEnterpriseType(enterpriseType.getEnterpriseType());
-        existing.setActive(enterpriseType.isActive());
+//        existing.setActive(enterpriseType.isActive());
+        existing.setIsActive(enterpriseType.getIsActive());
+
         return repository.save(existing);
     }
 

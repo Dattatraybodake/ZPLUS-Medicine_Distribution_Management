@@ -108,7 +108,7 @@ public class Companies {
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
 
-    // Helpers keep both sides of the relationship in sync
+//     Helpers keep both sides of the relationship in sync
     public void addAddress(CompanyAddress address) {
         addresses.add(address);
         address.setCompany(this);

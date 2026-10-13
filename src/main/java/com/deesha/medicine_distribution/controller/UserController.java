@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
     Logger logger= LoggerFactory.getLogger(UserController.class);
 
@@ -54,7 +54,7 @@ public class UserController {
         List<UserModel> list = userService.viewAllUsers();
         if(list.size()!=0)
         {
-            System.out.println("  list ="+list.size());
+            System.out.println("list ="+list.size());
             return userService.viewAllUsers();
         }
         else
@@ -70,15 +70,26 @@ public class UserController {
         return ResponseEntity.ok(loginresponse);
     }
 
-    // Update user
-    @PutMapping("/update")
-    public ResponseEntity<Boolean> updateUser( @RequestBody UserModel userModel) {
-        Boolean updated = userService.updateUserMaster(userModel);
-        if (Boolean.TRUE.equals(updated)) {
-            return ResponseEntity.ok(true);
-        }
-        return ResponseEntity.badRequest().body(false);
-    }
+    // Update user all details.
+//    @PutMapping("/update")
+//    public ResponseEntity<Boolean> updateUser( @RequestBody UserModel userModel) {
+//        Boolean updated = userService.updateUserMaster(userModel);
+//        if (Boolean.TRUE.equals(updated)) {
+//            return ResponseEntity.ok(true);
+//        }
+//        return ResponseEntity.badRequest().body(false);
+//    }
 
+    // PATCH: partial update (only the fields sent in the body are changed)
+    @PatchMapping("/update/{userId}")
+    public ResponseEntity<?> patchUser(@PathVariable("") Integer userId, @RequestBody UserModel userModel) {
+        try {
+            UserModel updated = userService.patchUser(userId, userModel);
+            return ResponseEntity.ok(updated);
+        } catch (RuntimeException e) {
+            logger.error("Patch failed for user {}: {}", userId, e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
 
 }

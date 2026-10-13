@@ -5,11 +5,13 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity
-@Getter @Setter
-@Table(name = "company_address", uniqueConstraints = @UniqueConstraint(name = "uk_company_address_type", columnNames = {"company_id", "address_type"}))
-public class CompanyAddress
-{
+// CompanyAddress.java
+@Entity @Getter @Setter
+@Table(name = "company_address",
+        uniqueConstraints = @UniqueConstraint(
+                name = "uk_company_address_type",
+                columnNames = {"company_id", "address_type"}))
+public class CompanyAddress {
 
     public enum AddressType { REGISTERED, FACTORY, CORRESPONDENCE }
 
@@ -18,7 +20,6 @@ public class CompanyAddress
     @Column(name = "address_id")
     private Long addressId;
 
-    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "company_id", nullable = false)
     private Companies company;
@@ -33,17 +34,10 @@ public class CompanyAddress
     @Column(name = "address_line2")
     private String addressLine2;
 
-    @Column(name = "city", nullable = false, length = 90)
-    private String city;
-
-    @Column(name = "district", nullable = false, length = 90)
-    private String district;
-
-    @Column(name = "state", nullable = false, length = 90)
-    private String state;
-
-    @Column(name = "country", nullable = false, length = 90)
-    private String country;
+    // district, state, country are derived: city -> district -> state -> country
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "cities_id", nullable = false)
+    private Cities city;
 
     @Column(name = "pincode", nullable = false, length = 6)
     private String pincode;
