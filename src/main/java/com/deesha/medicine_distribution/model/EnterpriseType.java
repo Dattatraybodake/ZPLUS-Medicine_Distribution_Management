@@ -1,11 +1,8 @@
 package com.deesha.medicine_distribution.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 
 @Entity
-@Getter @Setter
 @Table(name = "enterprice_type")
 public class EnterpriseType {
 
@@ -19,4 +16,28 @@ public class EnterpriseType {
 
     @Column(name = "is_active", nullable = false)
     private Boolean isActive = true;
+
+    public Integer getEnterpriseTypeId() {
+        return enterpriseTypeId;
+    }
+
+    public void setEnterpriseTypeId(Integer enterpriseTypeId) {
+        this.enterpriseTypeId = enterpriseTypeId;
+    }
+
+    public String getEnterpriseType() {
+        return enterpriseType;
+    }
+
+    public void setEnterpriseType(String enterpriseType) {
+        this.enterpriseType = enterpriseType;
+    }
+
+    public Boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Boolean active) {
+        isActive = active;
+    }
 }

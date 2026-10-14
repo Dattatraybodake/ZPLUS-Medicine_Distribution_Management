@@ -1,14 +1,8 @@
 package com.deesha.medicine_distribution.model;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 
+import jakarta.persistence.*;
 
 @Entity
-@Getter
-@Setter
 @Table(name = "cities")
 public class Cities {
     @Id
@@ -21,4 +15,28 @@ public class Cities {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "district_id")
     private Districts district;
+
+    public String getCitiesId() {
+        return citiesId;
+    }
+
+    public void setCitiesId(String citiesId) {
+        this.citiesId = citiesId;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
+
+    public Districts getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(Districts district) {
+        this.district = district;
+    }
 }

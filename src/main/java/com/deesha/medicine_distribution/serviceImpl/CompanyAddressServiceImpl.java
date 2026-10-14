@@ -18,7 +18,7 @@
 //
 //@Service
 //@RequiredArgsConstructor
-//public class CompanyAddressServiceImpl {
+//public class CompanyAddressServiceImpl implements CompanyAddressService{
 //
 //    private final CompaniesRepository companiesRepository;
 //    private final CitiesRepository citiesRepository;
@@ -26,7 +26,7 @@
 //
 //    @Transactional
 //    public CompanyAddressResponse create(Integer companyId, CompanyAddressRequest req) {
-//        Companies company = companiesRepository.findById(Long.valueOf(companyId))
+//        Companies company = companiesRepository.findById(companyId)
 //                .orElseThrow(() -> new EntityNotFoundException("Company not found: " + companyId));
 //
 //        if (addressRepository.existsByCompanyCompanyIdAndAddressType(companyId, req.addressType())) {
@@ -41,14 +41,14 @@
 //        return CompanyAddressResponse.from(address);
 //    }
 //
-//    @Transactional(readOnly = true)
-//    public List<CompanyAddressResponse> list(Integer companyId) {
-//        if (!companiesRepository.existsById(Long.valueOf(companyId))) {
-//            throw new EntityNotFoundException("Company not found: " + companyId);
-//        }
-//        return addressRepository.findAllByCompany(companyId).stream()
-//                .map(CompanyAddressResponse::from).toList();
-//    }
+////    @Transactional(readOnly = true)
+////    public List<CompanyAddressResponse> list(Long companyId) {
+////        if (!companiesRepository.existsById(companyId) {
+////            throw new EntityNotFoundException("Company not found: " + companyId);
+////        }
+////        return addressRepository.findAllByCompany(companyId).stream()
+////                .map(CompanyAddressResponse::from).toList();
+////    }
 //
 //    @Transactional(readOnly = true)
 //    public CompanyAddressResponse get(Integer companyId, Long addressId) {

@@ -2,12 +2,9 @@ package com.deesha.medicine_distribution.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Getter @Setter
 @Table(name = "company_bank_account")
 public class CompanyBankAccount {
 
@@ -41,4 +38,68 @@ public class CompanyBankAccount {
 
     @Column(name = "is_active", nullable = false)
     private Boolean isActive = false;
+
+    public Long getBankAccountId() {
+        return bankAccountId;
+    }
+
+    public void setBankAccountId(Long bankAccountId) {
+        this.bankAccountId = bankAccountId;
+    }
+
+    public Companies getCompany() {
+        return company;
+    }
+
+    public void setCompany(Companies company) {
+        this.company = company;
+    }
+
+    public String getBankName() {
+        return bankName;
+    }
+
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
+    }
+
+    public String getAccountName() {
+        return accountName;
+    }
+
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public String getIfscCode() {
+        return ifscCode;
+    }
+
+    public void setIfscCode(String ifscCode) {
+        this.ifscCode = ifscCode;
+    }
+
+    public String getBranchName() {
+        return branchName;
+    }
+
+    public void setBranchName(String branchName) {
+        this.branchName = branchName;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
 }

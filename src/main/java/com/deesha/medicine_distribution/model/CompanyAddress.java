@@ -1,11 +1,8 @@
 package com.deesha.medicine_distribution.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
-@Entity @Getter @Setter
+@Entity
 @Table(name = "company_address",
         uniqueConstraints = @UniqueConstraint(
                 name = "uk_company_address_type",
@@ -40,4 +37,60 @@ public class CompanyAddress {
 
     @Column(name = "pincode", nullable = false, length = 6)
     private String pincode;
+
+    public Long getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(Long addressId) {
+        this.addressId = addressId;
+    }
+
+    public Companies getCompany() {
+        return company;
+    }
+
+    public void setCompany(Companies company) {
+        this.company = company;
+    }
+
+    public AddressType getAddressType() {
+        return addressType;
+    }
+
+    public void setAddressType(AddressType addressType) {
+        this.addressType = addressType;
+    }
+
+    public String getAddressLine1() {
+        return addressLine1;
+    }
+
+    public void setAddressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
+    }
+
+    public String getAddressLine2() {
+        return addressLine2;
+    }
+
+    public void setAddressLine2(String addressLine2) {
+        this.addressLine2 = addressLine2;
+    }
+
+    public Cities getCity() {
+        return city;
+    }
+
+    public void setCity(Cities city) {
+        this.city = city;
+    }
+
+    public String getPincode() {
+        return pincode;
+    }
+
+    public void setPincode(String pincode) {
+        this.pincode = pincode;
+    }
 }

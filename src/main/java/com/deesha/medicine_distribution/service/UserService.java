@@ -12,5 +12,5 @@ public interface UserService {
     LoginResponse login(LoginRequest loginRequest);
     Boolean updateUserMaster(UserModel userModel);
     UserModel patchUser(Integer id, UserModel userModel);
-    void deleteUser(Integer id);
+    public void deleteUser(Integer id);
 }

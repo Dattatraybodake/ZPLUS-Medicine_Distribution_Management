@@ -7,8 +7,10 @@ import com.deesha.medicine_distribution.repository.UserRepository;
 import com.deesha.medicine_distribution.service.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -40,10 +42,9 @@ public class UserServiceImpl implements UserService {
             return loginResponse;
         }
 
-        if (!Objects.equals(usermodel.getEmail(), loginRequest.getEmail())) {
-
+        if (!Boolean.TRUE.equals(usermodel.getIsActive())) {
             loginResponse.setFlag(false);
-            loginResponse.setMessage("Username is not correct");
+            loginResponse.setMessage("User account is inactive");
             return loginResponse;
         }
 
@@ -53,6 +54,10 @@ public class UserServiceImpl implements UserService {
             loginResponse.setMessage("Password is not correct");
             return loginResponse;
         }
+
+        //update last login time.
+        usermodel.setLastLogin(LocalDateTime.now());
+        userRepository.save(usermodel);
 
         loginResponse.setFlag(true);
         loginResponse.setMessage("Login Successful");
@@ -102,21 +107,13 @@ public class UserServiceImpl implements UserService {
         if (userModel.getContactNumber() != null) existing.setContactNumber(userModel.getContactNumber());
         if (userModel.getIsActive() != null)      existing.setIsActive(userModel.getIsActive());
         if (userModel.getUserName() != null)      existing.setUserName(userModel.getUserName());
-
-        // Password: encode it if you use an encoder
-//        if (userModel.getPassword() != null && !userModel.getPassword().isBlank()) {
-//            existing.setPassword(passwordEncoder.encode(userModel.getPassword()));
-//            // if you don't use an encoder: existing.setPassword(userModel.getPassword());
-//        }
-
         return userRepository.save(existing);
     }
 
     @Override
     public void deleteUser(Integer id) {
         UserModel user = userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
-        user.setIsActive(false);          // soft delete
-        userRepository.save(user);
+                .orElseThrow(() -> new RuntimeException("User not found with ID: " + id));
+        userRepository.delete(user);
     }
 }

@@ -1,17 +1,11 @@
 package com.deesha.medicine_distribution.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name = "users")
-@Getter
-@Setter
-@NoArgsConstructor
 @ToString(exclude = "role")
 public class UserModel {
 
@@ -20,14 +14,9 @@ public class UserModel {
     @Column(name="user_id")
     private Integer userId;
 
-    @Column(name = "username", unique = true)
-    private String userName;
-
-    @Column(name = "password")
-    private String password;
-
-    @Column(name = "repeat_password")
-    private String repeatPassword;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_id")
+    private UserRoles role;
 
     @Column(name = "full_name")
     private String fullName;
@@ -38,24 +27,136 @@ public class UserModel {
     @Column(name = "contact_number")
     private String contactNumber;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "role_id")
-    private UserRoles role;
+    @Column(name = "username", unique = true)
+    private String userName;
+
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "repeat_password")
+    private String repeatPassword;
 
     @Column(name = "is_active")
     private Boolean isActive = true;
 
-    @Column(name = "last_login")
+    @Column(name = "last_login_at")
     private LocalDateTime lastLogin;
 
-    @Column(name = "created_by")
-    private String createdBy;
-
     @Column(name = "created_at", updatable = false)
-    private LocalDateTime createdAt;
+    private LocalDateTime created;
+
+    @Column(name = "modified_at", updatable = false)
+    private LocalDateTime modified;
 
     @PrePersist
     public void onCreate() {
-        this.createdAt = LocalDateTime.now();
+        this.created = LocalDateTime.now();
+    }
+
+    public UserModel() {
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRepeatPassword() {
+        return repeatPassword;
+    }
+
+    public void setRepeatPassword(String repeatPassword) {
+        this.repeatPassword = repeatPassword;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
+    }
+
+    public UserRoles getRole() {
+        return role;
+    }
+
+    public void setRole(UserRoles role) {
+        this.role = role;
+    }
+
+    public Boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Boolean active) {
+        isActive = active;
+    }
+
+    public LocalDateTime getLastLogin() {
+        return lastLogin;
+    }
+
+    public void setLastLogin(LocalDateTime lastLogin) {
+        this.lastLogin = lastLogin;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
+    }
+
+    public LocalDateTime getModified() {
+        return modified;
+    }
+
+    public void setModified(LocalDateTime modified) {
+        this.modified = modified;
     }
 }

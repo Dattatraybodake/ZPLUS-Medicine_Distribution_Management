@@ -1,10 +1,8 @@
 package com.deesha.medicine_distribution.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 
-@Entity @Getter @Setter
+@Entity
 @Table(name = "districts")
 public class Districts {
     @Id
@@ -17,4 +15,28 @@ public class Districts {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "state_id")
     private States state;
+
+    public Integer getDistrictId() {
+        return districtId;
+    }
+
+    public void setDistrictId(Integer districtId) {
+        this.districtId = districtId;
+    }
+
+    public String getDistrictName() {
+        return districtName;
+    }
+
+    public void setDistrictName(String districtName) {
+        this.districtName = districtName;
+    }
+
+    public States getState() {
+        return state;
+    }
+
+    public void setState(States state) {
+        this.state = state;
+    }
 }

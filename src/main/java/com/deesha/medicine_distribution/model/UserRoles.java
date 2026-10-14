@@ -8,10 +8,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "roles")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @ToString(exclude = "users")
 public class UserRoles {
 
@@ -29,4 +25,46 @@ public class UserRoles {
 
     @Column(name = "is_active", nullable = false)
     private Boolean isActive = true;
+
+    public UserRoles() {
+    }
+
+    public UserRoles(Integer roleId, String roleName, List<UserModel> users, Boolean isActive) {
+        this.roleId = roleId;
+        this.roleName = roleName;
+        this.users = users;
+        this.isActive = isActive;
+    }
+
+    public Integer getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
+    public List<UserModel> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<UserModel> users) {
+        this.users = users;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
 }

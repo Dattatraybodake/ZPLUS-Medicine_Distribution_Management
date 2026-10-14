@@ -1,8 +1,6 @@
 package com.deesha.medicine_distribution.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDate;
@@ -11,8 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
 @Table(name = "companies")
 public class Companies {
 
@@ -127,5 +123,229 @@ public class Companies {
     public void removeBankAccount(CompanyBankAccount account) {
         bankAccounts.remove(account);
         account.setCompany(null);
+    }
+
+    public Integer getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Integer companyId) {
+        this.companyId = companyId;
+    }
+
+    public EnterpriseType getEnterpriseType() {
+        return enterpriseType;
+    }
+
+    public void setEnterpriseType(EnterpriseType enterpriseType) {
+        this.enterpriseType = enterpriseType;
+    }
+
+    public List<CompanyAddress> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<CompanyAddress> addresses) {
+        this.addresses = addresses;
+    }
+
+    public List<CompanyBankAccount> getBankAccounts() {
+        return bankAccounts;
+    }
+
+    public void setBankAccounts(List<CompanyBankAccount> bankAccounts) {
+        this.bankAccounts = bankAccounts;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getCompanyTradeName() {
+        return companyTradeName;
+    }
+
+    public void setCompanyTradeName(String companyTradeName) {
+        this.companyTradeName = companyTradeName;
+    }
+
+    public String getCompanyCin() {
+        return companyCin;
+    }
+
+    public void setCompanyCin(String companyCin) {
+        this.companyCin = companyCin;
+    }
+
+    public String getManufacturingLicenseNo() {
+        return manufacturingLicenseNo;
+    }
+
+    public void setManufacturingLicenseNo(String manufacturingLicenseNo) {
+        this.manufacturingLicenseNo = manufacturingLicenseNo;
+    }
+
+    public LocalDate getDrugLicenseExpiryDate() {
+        return drugLicenseExpiryDate;
+    }
+
+    public void setDrugLicenseExpiryDate(LocalDate drugLicenseExpiryDate) {
+        this.drugLicenseExpiryDate = drugLicenseExpiryDate;
+    }
+
+    public LocalDate getCompanyStartDate() {
+        return companyStartDate;
+    }
+
+    public void setCompanyStartDate(LocalDate companyStartDate) {
+        this.companyStartDate = companyStartDate;
+    }
+
+    public LocalDate getCompanyEndDate() {
+        return companyEndDate;
+    }
+
+    public void setCompanyEndDate(LocalDate companyEndDate) {
+        this.companyEndDate = companyEndDate;
+    }
+
+    public String getUdyamRegistrationNo() {
+        return udyamRegistrationNo;
+    }
+
+    public void setUdyamRegistrationNo(String udyamRegistrationNo) {
+        this.udyamRegistrationNo = udyamRegistrationNo;
+    }
+
+    public String getGstin() {
+        return gstin;
+    }
+
+    public void setGstin(String gstin) {
+        this.gstin = gstin;
+    }
+
+    public String getPanNumber() {
+        return panNumber;
+    }
+
+    public void setPanNumber(String panNumber) {
+        this.panNumber = panNumber;
+    }
+
+    public String getCompanyOwner() {
+        return companyOwner;
+    }
+
+    public void setCompanyOwner(String companyOwner) {
+        this.companyOwner = companyOwner;
+    }
+
+    public String getOwnerContact() {
+        return ownerContact;
+    }
+
+    public void setOwnerContact(String ownerContact) {
+        this.ownerContact = ownerContact;
+    }
+
+    public String getOwnerAlternateContact() {
+        return ownerAlternateContact;
+    }
+
+    public void setOwnerAlternateContact(String ownerAlternateContact) {
+        this.ownerAlternateContact = ownerAlternateContact;
+    }
+
+    public String getAuthorizedSignatoryName() {
+        return authorizedSignatoryName;
+    }
+
+    public void setAuthorizedSignatoryName(String authorizedSignatoryName) {
+        this.authorizedSignatoryName = authorizedSignatoryName;
+    }
+
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
+    }
+
+    public String getAlternateContact() {
+        return alternateContact;
+    }
+
+    public void setAlternateContact(String alternateContact) {
+        this.alternateContact = alternateContact;
+    }
+
+    public String getEmailId() {
+        return emailId;
+    }
+
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getModifiedBy() {
+        return modifiedBy;
+    }
+
+    public void setModifiedBy(String modifiedBy) {
+        this.modifiedBy = modifiedBy;
+    }
+
+    public LocalDateTime getModifiedAt() {
+        return modifiedAt;
+    }
+
+    public void setModifiedAt(LocalDateTime modifiedAt) {
+        this.modifiedAt = modifiedAt;
+    }
+
+    public String getDeletedBy() {
+        return deletedBy;
+    }
+
+    public void setDeletedBy(String deletedBy) {
+        this.deletedBy = deletedBy;
+    }
+
+    public LocalDateTime getDeletedAt() {
+        return deletedAt;
+    }
+
+    public void setDeletedAt(LocalDateTime deletedAt) {
+        this.deletedAt = deletedAt;
     }
 }
